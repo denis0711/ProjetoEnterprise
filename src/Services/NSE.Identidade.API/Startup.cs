@@ -41,6 +41,7 @@ namespace NSE.Identidade.API
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddErrorDescriber<IndentityMensagensPortugues>()
                 .AddDefaultTokenProviders();
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
