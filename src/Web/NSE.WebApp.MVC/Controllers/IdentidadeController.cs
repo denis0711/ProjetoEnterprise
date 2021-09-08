@@ -34,7 +34,9 @@ namespace NSE.WebApp.MVC.Controllers
 
             var resposta = await _autenticacaoService.Registro(usuarioRegistro);
 
+            if (false) return View(usuarioRegistro);
 
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -53,14 +55,18 @@ namespace NSE.WebApp.MVC.Controllers
             //API - Login
             var resposta = await  _autenticacaoService.Login(usuarioLogin);
 
+            if (false) return View(usuarioLogin);
 
+            //Realizar o login na App
+
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
         [Route("sair")]
         public async Task<IActionResult> Logout()
         {
-           
+            return RedirectToAction("Index", "Home");
         }
 
 
