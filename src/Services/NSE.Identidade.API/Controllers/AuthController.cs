@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace NSE.Identidade.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/identidade")]
     public class AuthController : MainController
     {
         private readonly SignInManager<IdentityUser> _signInManager;

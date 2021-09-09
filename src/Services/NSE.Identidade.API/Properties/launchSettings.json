@@ -1,7 +1,11 @@
 {
   "iisSettings": {
-    "windowsAuthentication": true,
+    "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/NSE.Identidade.API",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:53781",
       "sslPort": 44380

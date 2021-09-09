@@ -23,7 +23,7 @@ namespace NSE.WebApp.MVC.Services
                 JsonSerializer.Serialize(usuarioLogin),
                 Encoding.UTF8,"application/json");
 
-            var response = await _httpClient.PostAsync("https://localhost:44380/api/Auth/autenticar", loginContent);
+            var response = await _httpClient.PostAsync("https://localhost:44380/api/identidade/autenticar", loginContent);
 
             var options = new JsonSerializerOptions
             {
@@ -39,7 +39,7 @@ namespace NSE.WebApp.MVC.Services
                 JsonSerializer.Serialize(usuarioRegistro),
                 Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("https://localhost:44380/api/Auth/nova-conta", registroContent);
+            var response = await _httpClient.PostAsync("https://localhost:44380/api/identidade/nova-conta", registroContent);
 
             return JsonSerializer.Deserialize<UsuarioRespostaLogin>(await response.Content.ReadAsStringAsync());
         }
