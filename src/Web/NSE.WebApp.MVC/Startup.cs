@@ -8,6 +8,11 @@ namespace NSE.WebApp.MVC
 {
     public class Startup
     {
+        //Aqui ele cola outro Startup para mostrar que esta trabalhando
+        //em qual desenvolvimento nao faco isso mas fica como dica
+        //caso de algum erro !!
+
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -20,7 +25,7 @@ namespace NSE.WebApp.MVC
         {
             services.AddIdentiyConfiguration();
 
-            services.AddMvcConfiguration();
+            services.AddMvcConfiguration(Configuration);
 
             services.RegisterServices();
         }
