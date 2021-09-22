@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NSE.Catalogo.API.Data;
+using NSE.WebAPI.Core.Identidade;
 
 namespace NSE.Catalogo.API.Configurations
 {
@@ -43,7 +44,11 @@ namespace NSE.Catalogo.API.Configurations
 
             app.UseRouting();
 
+
+
             app.UseCors("Total");
+
+            app.UseAuthConfiguration();
 
             app.UseEndpoints(endpoints =>
             {

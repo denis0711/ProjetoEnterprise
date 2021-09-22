@@ -12,6 +12,7 @@ using NSE.Catalogo.API.Configurations;
 using NSE.Catalogo.API.Data;
 using NSE.Catalogo.API.Data.Repository;
 using NSE.Catalogo.API.Models;
+using NSE.WebAPI.Core.Identidade;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,8 @@ namespace NSE.Catalogo.API
             services.AddDependencyConfiguration();
 
             services.AddApiConfig(Configuration);
+
+            services.AddJwtConfiguration(Configuration);
 
             services.AddSwaggerConfiguration();
         }

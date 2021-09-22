@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using NSE.Identidade.API.Data;
 using NSE.Identidade.API.Extensions;
+using NSE.WebAPI.Core.Identidade;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,32 +30,7 @@ namespace NSE.Identidade.API.Configuration
                 .AddErrorDescriber<IndentityMensagensPortugues>()
                 .AddDefaultTokenProviders();
 
-            var appSettingsSection = configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
-
-            var appSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-
-
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(bearerOptions =>
-            {
-                bearerOptions.RequireHttpsMetadata = true;
-                bearerOptions.SaveToken = true;
-                bearerOptions.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidAudience = appSettings.ValidoEm,
-                    ValidIssuer = appSettings.Emissor
-
-                };
-            });
+            services.AddJwtConfiguration(configuration);
 
             //app.UseAuthentication();
 
@@ -62,13 +38,6 @@ namespace NSE.Identidade.API.Configuration
             return services;
         }
 
-        public static IApplicationBuilder UseIdendityConfig( this IApplicationBuilder app)
-        {
-            app.UseAuthentication();
-
-            app.UseAuthorization();
-
-            return app;
-        }
+       
     }
 }
